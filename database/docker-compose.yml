@@ -1,0 +1,27 @@
+version: "3"
+
+volumes:
+  vacation-tracking-data:
+
+services:
+  db:
+    image: postgres:11
+    volumes:
+      - vacation-tracking-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=vacation_tracking
+      - PGDATA=/var/lib/postgresql/data/pgdata
+  pgadmin_main:
+    container_name: pgadmin_main
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=develper@ucacue.edu.ec
+      - PGADMIN_DEFAULT_PASSWORD=ucacue-2023
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
