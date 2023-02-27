@@ -1,0 +1,30 @@
+@startuml
+left to right direction
+actor Gerente as Manager
+actor Empleado  as Empolyee
+actor "Personal TH" as Clerk 
+actor "Administrador del sistema" as SystemAdmin
+package VacationTrackingSystem{
+usecase ApproveRequest as "Aprobar solicitud"
+usecase AwardTime as "Conceder permiso"
+usecase ManageTime as "Gestionar el tiempo"
+usecase EditEmpolyeeRecord as "Editar registro de empleado"
+usecase ManageLocations as "Gestionar ubicación"
+usecase ManageLeaveCategories as "Gestionar categorías de permisos"
+usecase OverrideLeaveRecords as "Gestionar registros de permisos"
+usecase BackUpSystemLogs as "Respaldar logs del sistema"
+}
+Manager --> ApproveRequest
+Manager --> AwardTime
+
+Empolyee --> ManageTime
+
+Clerk --> EditEmpolyeeRecord
+Clerk --> ManageLocations
+Clerk --> ManageLeaveCategories
+Clerk --> OverrideLeaveRecords
+
+SystemAdmin --> BackUpSystemLogs
+
+
+@enduml

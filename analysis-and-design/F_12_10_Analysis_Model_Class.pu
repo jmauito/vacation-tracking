@@ -1,0 +1,67 @@
+@startuml
+class Location{
+    - name:String
+}
+class Position{
+    - name: String
+}
+class Designation{
+    - startDate: Date
+    - endDate: Date
+}
+class Employee{
+    - name: String
+}
+class Request{
+    - title:String
+    - comments:String
+    - hours: int 
+    - dates: Date
+    + validate()
+}
+class Grant{
+    - hours: int
+    - expires: Date 
+    - active: Date 
+    + request()
+}
+class Category{
+    - name: String
+    - description: String 
+}
+abstract class Restriction{
+    - name: String 
+    - description: String
+    + validate()
+}
+
+
+
+Location "1" <-- "*" Designation : -location
+Position "1" <-- "*" Designation : -position
+Designation "*" <--o "1" Employee : -designations
+Employee  "-employee *" -- "-manager *" Employee
+Employee "1" *--> "*" Request : -requests
+Employee "1" *--> "*" Grant : -grants
+Category "-category 0..1 " -- "-grant *" Grant
+Grant  "-grant 1" -- "-restriction *" Restriction
+
+Restriction -- Designation
+
+class DateExclusionRestriction{}
+class AdjacentDayRestriction
+class DayofWeekRestriction
+class ConsecutiveDayRestricion
+class CoworkerRestriction
+class PeriodLimitRestriction
+
+
+Restriction <|-- DateExclusionRestriction
+Restriction <|-- AdjacentDayRestriction
+Restriction <|-- DayofWeekRestriction
+Restriction <|-- ConsecutiveDayRestricion
+Restriction <|-- CoworkerRestriction
+Restriction <|-- PeriodLimitRestriction
+
+
+@enduml

@@ -1,0 +1,20 @@
+@startuml
+abstract class Restriction{
+    name:String
+    description:String
+}
+class DateExclusionRestriction{}
+class AdjacentDayRestriction
+class DayofWeekRestriction
+class ConsecutiveDayRestricion
+class CoworkerRestriction
+class PeriodLimitRestriction
+
+
+Restriction <|-- DateExclusionRestriction
+Restriction <|-- AdjacentDayRestriction
+Restriction <|-- DayofWeekRestriction
+Restriction <|-- ConsecutiveDayRestricion
+Restriction <|-- CoworkerRestriction
+Restriction <|-- PeriodLimitRestriction
+@enduml
