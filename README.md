@@ -6,4 +6,4 @@ The top level use case analysis
 ## Class model
 The class model. Added Designation class who not present in original class model.
 ![Class model](out/analysis-and-design/F_12_10_Analysis_Model_Class/F_12_10_Analysis_Model_Class.svg)
-
+To see the prototype of UI [click here](https://www.figma.com/file/pEDBmNkf0CBFFMRYHnHx3m/Track-Vacation-System?node-id=0%3A1&t=CGdFgmTLuj9amGqZ-1)
