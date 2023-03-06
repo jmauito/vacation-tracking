@@ -8,7 +8,7 @@ const style = {
     width: '150%',
     maxWidth: 500,
     bgcolor: 'darkgrey',
-    
+   
     
   };
 
