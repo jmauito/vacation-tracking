@@ -4,6 +4,7 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { TopSidebar } from './TopSidebar';
 import { LeftSidebar } from './LeftSidebar';
+import { VacationRequestList } from '../VacationRequestList';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -28,10 +29,9 @@ export const MainTemplate = () => {
         </LeftSidebar>
       </Grid>
       <Grid item xs={9}>
-        <Item>xs=4</Item>
+        <VacationRequestList/>
       </Grid>
     </Grid>
-
 
   )
 }
