@@ -1,3 +1,11 @@
+INSERT INTO ROL(ID, NAME)
+VALUES (1, 'Gestor de vacaciones'),
+(2, 'Programador');
+
+INSERT INTO USER_DETAIL(ID, PASSWORD, USER_NAME, ROL_ID)
+VALUES(1, 'pass123', 'mauricio.zarate', 2),
+(2, 'pass123', 'juana.ramirez', 1);
+
 INSERT INTO REQUEST(ID, TITLE, COMMENT, FINISH_DATE, START_DATE, HOURS)
 VALUES
 (1, 'Solicitud uno', 'Comentario 1', '2023-01-01', '2023-01-15',0),
