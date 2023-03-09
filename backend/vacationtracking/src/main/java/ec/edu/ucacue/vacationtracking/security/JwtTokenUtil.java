@@ -1,6 +1,6 @@
 package ec.edu.ucacue.vacationtracking.security;
 
-import ec.edu.ucacue.vacationtracking.domain.UserDetail;
+import ec.edu.ucacue.vacationtracking.domain.User;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,10 +16,10 @@ public class JwtTokenUtil {
     @Value("${jwt.secret}")
     private String secret;
 
-    public String generateToken(UserDetail userDetail){
+    public String generateToken(User user){
         Map<String, Object> claims = new HashMap<>();
-        claims.put("userName", userDetail.getUserName());
-        claims.put("rolId", userDetail.getRol().getId());
+        claims.put("userName", user.getUsername());
+        claims.put("rolId", user.getRole().getId());
         return doGenerateToken(claims);
     }
 

@@ -1,6 +1,6 @@
 package ec.edu.ucacue.vacationtracking.controllers;
 
-import ec.edu.ucacue.vacationtracking.domain.UserDetail;
+import ec.edu.ucacue.vacationtracking.domain.User;
 import ec.edu.ucacue.vacationtracking.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,8 +16,8 @@ public class UserController {
     UserService userService;
 
     @GetMapping("/{userName}")
-    public ResponseEntity<UserDetail> findByUserName(@PathVariable String userName){
-        UserDetail userDetail = userService.findByUserName(userName);
-        return ResponseEntity.ok(userDetail);
+    public ResponseEntity<User> findByUserName(@PathVariable String userName){
+        User user = userService.findByUserName(userName);
+        return ResponseEntity.ok(user);
     }
 }

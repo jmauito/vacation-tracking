@@ -1,7 +1,7 @@
 package ec.edu.ucacue.vacationtracking.repositories;
 
-import ec.edu.ucacue.vacationtracking.domain.Rol;
+import ec.edu.ucacue.vacationtracking.domain.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface RolRepository extends JpaRepository<Rol, Long> {
+public interface RoleRepository extends JpaRepository<Role, Long> {
 }

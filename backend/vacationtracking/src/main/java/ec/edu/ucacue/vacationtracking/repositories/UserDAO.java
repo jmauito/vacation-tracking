@@ -1,6 +1,6 @@
 package ec.edu.ucacue.vacationtracking.repositories;
 
-import ec.edu.ucacue.vacationtracking.domain.UserDetail;
+import ec.edu.ucacue.vacationtracking.domain.User;
 import ec.edu.ucacue.vacationtracking.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -13,10 +13,10 @@ public class UserDAO implements IUserDAO{
     UserRepository userRepository;
 
     @Override
-    public UserDetail findByUserName(String userName) {
-        Optional<UserDetail> user = userRepository.findByUserName(userName);
+    public User findByEmail(String email) {
+        Optional<User> user = userRepository.findByEmail(email);
         if(user.isEmpty()){
-            throw new ResourceNotFoundException(userName);
+            throw new ResourceNotFoundException(email);
         }
         return user.get();
     }
