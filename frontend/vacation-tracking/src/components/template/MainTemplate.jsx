@@ -3,6 +3,7 @@ import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { TopSidebar } from './TopSidebar';
+import { RequestDetails } from '../../requestDetails/RequestDetails';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -25,7 +26,7 @@ export const MainTemplate = () => {
         <Item>xs=8</Item>
       </Grid>
       <Grid item xs={9}>
-        <Item>xs=4</Item>
+        <RequestDetails/>
       </Grid>
     </Grid>
 
