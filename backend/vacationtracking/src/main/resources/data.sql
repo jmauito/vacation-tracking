@@ -1,6 +1,6 @@
 INSERT INTO ROLE(ID, NAME)
-VALUES (1, 'Gestor de vacaciones'),
-(2, 'Programador');
+VALUES (1, 'ROLE_ADMIN'),
+(2, 'ROLE_USER');
 --
 INSERT INTO _USER(ID, PASSWORD, EMAIL, ROLE_ID)
 VALUES(100, '$2a$10$iOp5PLISgwL.xxdvQFl14uT506s8bYXR4B./3QU6teIkFRno3bUjq', 'nick.fury@mail.com', 1),
