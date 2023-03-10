@@ -1,7 +1,7 @@
 package ec.edu.ucacue.vacationtracking.repositories;
 
-import ec.edu.ucacue.vacationtracking.domain.UserDetail;
+import ec.edu.ucacue.vacationtracking.domain.User;
 
 public interface IUserDAO {
-    UserDetail findByUserName(String userName);
+    User findByEmail(String email);
 }
