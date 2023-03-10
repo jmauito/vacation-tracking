@@ -8,7 +8,7 @@ const countryList = [
     { label: 'Solicitar licencia con cargo a vacaciones' },
 ];
 
-export const Solicitudevacaciones = () => {
+export const VacationRequest = () => {
     return (
 
         <Grid item xs={9}>
