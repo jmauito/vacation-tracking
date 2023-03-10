@@ -3,10 +3,10 @@ import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { TopSidebar } from './TopSidebar';
+import { RequestDetails } from '../../requestDetails/RequestDetails';
 import { LeftSidebar } from './LeftSidebar';
-import { VacationRequestList } from '../VacationRequestList';
 
-const Item = styled(Paper)(({ theme }) => ({
+const item= styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
   padding: theme.spacing(1),
@@ -17,19 +17,17 @@ const Item = styled(Paper)(({ theme }) => ({
 export const MainTemplate = () => {
   return (
 
-    <Grid container spacing={2}>
+    <Grid container spacing={1}>
       <Grid
         item xs={12}>
            <TopSidebar/> 
       </Grid>
 
       <Grid item xs={3}>
-        <LeftSidebar>
-          
-        </LeftSidebar>
+        <LeftSidebar />
       </Grid>
       <Grid item xs={9}>
-        <VacationRequestList/>
+        <RequestDetails/>
       </Grid>
     </Grid>
 
