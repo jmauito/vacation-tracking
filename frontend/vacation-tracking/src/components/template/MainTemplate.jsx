@@ -7,7 +7,7 @@ import { VacationRequestList } from '../../vacationRequestList/VacationRequestLi
 import { LeftSidebar } from './LeftSidebar';
 import { VacationRequestList } from '../VacationRequestList';
 
-const Item = styled(Paper)(({ theme }) => ({
+const item= styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
   padding: theme.spacing(1),

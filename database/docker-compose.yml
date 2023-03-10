@@ -13,13 +13,13 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=vacation_tracking
+      - POSTGRES_DB=vacation-tracking
       - PGDATA=/var/lib/postgresql/data/pgdata
   pgadmin_main:
     container_name: pgadmin_main
     image: dpage/pgadmin4
     environment:
-      - PGADMIN_DEFAULT_EMAIL=develper@ucacue.edu.ec
+      - PGADMIN_DEFAULT_EMAIL=developer@ucacue.edu.ec
       - PGADMIN_DEFAULT_PASSWORD=ucacue-2023
     ports:
       - "5050:80"
