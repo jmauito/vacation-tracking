@@ -3,6 +3,7 @@ import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { TopSidebar } from './TopSidebar';
+import { VacationRequestList } from '../../vacationRequestList/VacationRequestList';
 import { LeftSidebar } from './LeftSidebar';
 import { VacationRequestList } from '../VacationRequestList';
 
@@ -17,14 +18,14 @@ const item= styled(Paper)(({ theme }) => ({
 export const MainTemplate = () => {
   return (
 
-    <Grid container spacing={2}>
+    <Grid container spacing={1}>
       <Grid
         item xs={12}>
            <TopSidebar/> 
       </Grid>
 
       <Grid item xs={3}>
-        <LeftSidebar/>
+        <LeftSidebar />
       </Grid>
       <Grid item xs={9}>
         <VacationRequestList/>
