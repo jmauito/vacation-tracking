@@ -49,7 +49,7 @@ const rows = [
     { id: 4, Tipo: 'Licencia', Inicia:'20-Feb-2023', Termina:'01-Mar-2023', Comentario:'', Accion:'Detalles'},
     
   ];
-  export const EstadoDeSolicitudes = () => {
+  export const StatusRequest = () => {
     return (
       <div>
         <Grid>EstadoDeSolicitudes</Grid> <Grid textAlign={'right'} >Dias de vacaciones pendientes 15</Grid>
