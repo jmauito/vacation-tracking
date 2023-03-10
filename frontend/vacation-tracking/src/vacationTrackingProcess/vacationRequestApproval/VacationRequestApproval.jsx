@@ -6,7 +6,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
-export const VacationRequestList = () => {
+export const VacationRequesApproval = () => {
     return (
         <Box sx={{ width: '100%', maxWidth: 500 }}>
             <Typography variant="h5" textAlign={'center'} fontSize={35}>
