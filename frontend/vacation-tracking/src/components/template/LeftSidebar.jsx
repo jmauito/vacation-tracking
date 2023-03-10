@@ -26,6 +26,5 @@ export const LeftSidebar = () => {
       </ListItem>
 
     </List>
-
   )
 }
