@@ -1,9 +1,16 @@
 import './App.css';
-import { MainTemplate } from './components/template/MainTemplate';
+import {BrowserRouter} from 'react-router-dom'
+import UserProvider from './components/contextManager/UserProvider';
+import { VacationTrackingApp } from './VacationTrackingApp';
 
 function App() {
   return (
- <MainTemplate/>
+    <UserProvider>
+      <BrowserRouter>
+        <VacationTrackingApp />
+      </BrowserRouter>
+    </UserProvider>
+
   );
 }
 

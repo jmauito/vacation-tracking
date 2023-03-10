@@ -2,11 +2,11 @@ import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
 import { VacationTracking } from "../../translations/es/VacationTracking";
 
-export const Topbar = () => {
+export const TopSidebar = () => {
   return (
     <Grid
       container
-      sx={{ bgcolor: "#1E1E1E", pl: 2, pt: 2, pb: 2, color: "#ffffff" }}
+      sx={{ bgcolor: "#1E1E1E", p: 2, color: "#ffffff" }}
     >
       <Grid
         item

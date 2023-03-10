@@ -1,12 +1,13 @@
 import React from 'react';
 import Grid from '@mui/material/Grid';
-import { Topbar } from './Topbar';
+import { TopSidebar } from './TopSidebar';
+import { LeftSidebar } from './LeftSidebar';
 
-export const MainTemplate = () => {
+export const MainTemplate = ({children}) => {
   return (
     <Grid container>
       <Grid item xs={12}>
-        <Topbar />
+        <TopSidebar />
       </Grid>
       <Grid item xs={3} 
         sx={{ 
@@ -14,10 +15,10 @@ export const MainTemplate = () => {
           borderRight: 2, 
           borderColor: '#0000001F'
         }}>
-        panel izquierdo
+        <LeftSidebar />
       </Grid>
       <Grid item xs={9} sx={{ height: '100vh' }}>
-       panel derecho
+       {children}
       </Grid>
     </Grid>
   )
