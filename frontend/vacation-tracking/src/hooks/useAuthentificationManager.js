@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import  {UserContext}  from "../components/contextManager/UserContext";
+import axios from 'axios';
 
 
 const useAuthentificationManager = () => {
@@ -8,6 +9,8 @@ const useAuthentificationManager = () => {
 
   const validateCredentials = (email, password) => {
     
+    const token = axios.post('');
+
     if(email === 'wsuarez86@hotmail.com'){
       setStatusLogin({
         email,
@@ -23,8 +26,7 @@ const useAuthentificationManager = () => {
         errorMessage: "Credenciales incorrectas",
       })
     }
-    
-    return 
+     
   }
 
   return {
