@@ -1,12 +1,21 @@
 import React, { useState } from 'react'
 import { Grid, TextField, Typography } from '@mui/material'
 import Button from '@mui/material/Button';
+import  useAuthentificationManager  from '../../hooks/useAuthentificationManager';
+import { useContext } from 'react';
+import { UserContext } from '../../components/contextManager/UserContext';
 
 export const LoginPage = () => {
+
+    const{validateCredentials} = useAuthentificationManager();
+    const{statusLogin} = useContext (UserContext);
+
     const onclickLogin = () => {
-        alert("Correo:" + correo);
-        alert("Contraseña:"+contrasenia)
-       
+     //   alert("Correo:" + correo);
+     //   alert("Contraseña:"+contrasenia)
+
+      validateCredentials(correo,contrasenia);
+      console.log(statusLogin)   
     }
 
     const [correo, setCorreo] = useState("");
