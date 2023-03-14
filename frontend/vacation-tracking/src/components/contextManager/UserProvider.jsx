@@ -8,6 +8,8 @@ const UserProvider = ({children}) => {
     status: 'checking', // , authenticated
     displayName: null,
     errorMessage: null,
+    token: null,
+    role: null,
   });
 
   return (
