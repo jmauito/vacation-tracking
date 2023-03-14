@@ -1,14 +1,16 @@
 import './App.css';
-import { LoginPage } from './auth/pages/LoginPage';
+import {BrowserRouter} from 'react-router-dom'
 import UserProvider from './components/contextManager/UserProvider';
-//import { MainTemplate } from './components/template/MainTemplate';
+import { VacationTrackingApp } from './VacationTrackingApp';
 
 function App() {
   return (
-// <MainTemplate/> 
-<UserProvider>
-  <LoginPage/>
-</UserProvider>
+    <UserProvider>
+      <BrowserRouter>
+        <VacationTrackingApp />
+      </BrowserRouter>
+    </UserProvider>
+
   );
 }
 
