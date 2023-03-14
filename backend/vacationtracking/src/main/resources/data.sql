@@ -6,6 +6,11 @@ INSERT INTO _USER(ID, PASSWORD, EMAIL, ROLE_ID)
 VALUES(100, '$2a$10$iOp5PLISgwL.xxdvQFl14uT506s8bYXR4B./3QU6teIkFRno3bUjq', 'nick.fury@mail.com', 1),
 (200, '$2a$10$629nhy94B86rW16/KdJOoet.f3XnAPC8CmKxyLjWPXt8eXHwFvaui', 'natasha.romanoff@mail.com', 2);
 --
+INSERT INTO REQUEST_TYPE(ID, NAME)
+VALUES(1, 'Tiempo anual de vacaciones'),
+(2, 'Solicitar licencia con cargo a vacaciones');
+
+--
 INSERT INTO REQUEST(ID, TITLE, COMMENT, FINISH_DATE, START_DATE, HOURS)
 VALUES
 (100, 'Solicitud uno', 'Comentario 1', '2023-01-01', '2023-01-15',0),
