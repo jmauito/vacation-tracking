@@ -1,20 +1,30 @@
 import { useContext } from "react"
 import { UserContext } from "../components/contextManager/UserContext"
+import useVacationTrackingService from "./useVacationTrackingService";
 
 
 
 const useAuthentificationManager = () => {
 
     const {setStatusLogin} = useContext(UserContext);
+    const {getAuthData} = useVacationTrackingService();
 
+    const validateCredentials = async (email, password) => {
 
-    const validateCredentials = (email, password) => {
-        if(email === "kika@gmail.com"){
+        const response= await getAuthData("api/v1/auth/authenticate",{
+            "username": email,
+            "password": password
+        } );
+
+        
+        if(response?.username === email){
             setStatusLogin({
-                email: email, 
+                email: response.username, 
                 status: "authenticated",
                 displayName: "Valeria",
-                errorMessage: null,
+                errorMessage: null, 
+                token: response.token,
+                role: response.role,
             })
         } else {
             setStatusLogin({
@@ -22,6 +32,8 @@ const useAuthentificationManager = () => {
                 status: "no-authenticated",
                 displayName: null,
                 errorMessage: "Credenciales incorrecta",
+                token: null,
+                role: null,
             })
         }
     } 
