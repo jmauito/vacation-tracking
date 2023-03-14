@@ -1,8 +1,6 @@
 package ec.edu.ucacue.vacationtracking.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,4 +21,9 @@ public class Request {
     private int hours;
     private Date startDate;
     private Date finishDate;
+    @ManyToOne
+    private RequestType requestType;
+    private boolean validated;
+    @ManyToOne
+    private Employee employee;
 }

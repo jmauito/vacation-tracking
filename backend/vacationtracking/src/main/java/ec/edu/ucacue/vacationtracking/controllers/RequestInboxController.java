@@ -1,6 +1,6 @@
 package ec.edu.ucacue.vacationtracking.controllers;
 
-import ec.edu.ucacue.vacationtracking.domain.Request;
+import ec.edu.ucacue.vacationtracking.domain.dtos.RequestInboxOutDTO;
 import ec.edu.ucacue.vacationtracking.services.RequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +18,8 @@ public class RequestInboxController {
     @Autowired
     RequestService requestService;
     @GetMapping
-    public ResponseEntity<List<Request>> findAll(){
-        List<Request> requests = requestService.findAll();
+    public ResponseEntity<List<RequestInboxOutDTO>> findPending(){
+        List<RequestInboxOutDTO> requests = requestService.findPending();
         return ResponseEntity.ok(requests);
     }
 }
