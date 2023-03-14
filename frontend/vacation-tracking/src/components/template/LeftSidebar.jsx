@@ -1,30 +1,40 @@
-import { List } from '@mui/material'
-import React from 'react'
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import Divider from '@mui/material/Divider';
-
-const style = {
-  width: '100%',
-  maxWidth: 360,
-  bgcolor: 'background.paper',
-};
+import {
+  Divider,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+} from "@mui/material";
+import React from "react";
+import { Link } from "react-router-dom";
 
 export const LeftSidebar = () => {
   return (
-    <List sx={style} component="nav" aria-label="mailbox folders">
-
-      <ListItem button>
-        <ListItemText primary="Inicio" />
-      </ListItem>
+    <List>
+      <Link to="/" style={{all: 'unset'}}>
+        <ListItem disablePadding>
+          <ListItemButton>
+            <ListItemText>Inicio</ListItemText>
+          </ListItemButton>
+        </ListItem>
+      </Link>
       <Divider />
-      <ListItem button divider>
-        <ListItemText primary="Solicitar Vacaciones" />
-      </ListItem>
-      <ListItem button>
-        <ListItemText primary="Estado de Solicitudes" />
-      </ListItem>
-
+      <Link to="/solicitud-vacaciones" style={{all: 'unset'}}>
+        <ListItem disablePadding>
+          <ListItemButton>
+            <ListItemText>Solicitar vacaciones</ListItemText>
+          </ListItemButton>
+        </ListItem>
+      </Link>
+      <Divider />
+      <Link to="/estado-solicitudes-vacaciones" style={{all: 'unset'}}>
+        <ListItem disablePadding>
+          <ListItemButton>
+            <ListItemText>Estado de las solicitudes</ListItemText>
+          </ListItemButton>
+        </ListItem>
+      </Link>
+      <Divider />
     </List>
-  )
-}
+  );
+};

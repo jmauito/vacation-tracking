@@ -1,6 +1,7 @@
 import React from 'react'
 import { Box, Grid } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
+import { MainTemplate } from '../../components/template/MainTemplate';
 
 const columns = [
   { field: 'id', headerName: 'Nro', width: 90 },
@@ -51,16 +52,18 @@ const rows = [
   ];
   export const StatusRequest = () => {
     return (
-      <div>
-        <Grid>EstadoDeSolicitudes</Grid> <Grid textAlign={'right'} >Dias de vacaciones pendientes 15</Grid>
-        <Box sx={{ height:315 , width: '100%' }}>
-          <DataGrid
-            rows={rows}
-            columns={columns}
-          />
-        </Box>
-  
-      </div>
+      <MainTemplate>
+        <div>
+          <Grid>EstadoDeSolicitudes</Grid> <Grid textAlign={'right'} >Dias de vacaciones pendientes 15</Grid>
+          <Box sx={{ height:315 , width: '100%' }}>
+            <DataGrid
+              rows={rows}
+              columns={columns}
+            />
+          </Box>
+    
+        </div>
+      </MainTemplate>
     )
   }
   
