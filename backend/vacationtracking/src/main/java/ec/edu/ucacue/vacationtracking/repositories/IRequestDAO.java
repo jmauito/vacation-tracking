@@ -5,5 +5,5 @@ import ec.edu.ucacue.vacationtracking.domain.Request;
 import java.util.List;
 
 public interface IRequestDAO {
-    List<Request> findAllRequest();
+    List<Request> findPending();
 }

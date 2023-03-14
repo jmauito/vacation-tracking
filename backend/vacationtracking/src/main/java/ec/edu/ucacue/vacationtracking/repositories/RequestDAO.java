@@ -11,8 +11,9 @@ public class RequestDAO implements IRequestDAO{
     @Autowired
     RequestRepository requestRepository;
 
+
     @Override
-    public List<Request> findAllRequest() {
-        return requestRepository.findAll();
+    public List<Request> findPending() {
+        return requestRepository.findByValidated(true);
     }
 }
