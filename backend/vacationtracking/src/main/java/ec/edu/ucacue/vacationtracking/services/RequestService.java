@@ -43,6 +43,7 @@ public class RequestService {
                             .startDate(request.getStartDate().toString())
                             .finishDate(request.getFinishDate().toString())
                             .title(request.getTitle())
+                            .status(request.getStatus())
                     .build() );
         }
         return requestByEmployeeOutDTOList;
