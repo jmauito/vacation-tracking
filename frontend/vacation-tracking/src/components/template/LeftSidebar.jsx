@@ -35,6 +35,14 @@ export const LeftSidebar = () => {
         </ListItem>
       </Link>
       <Divider />
+      <Link to="/revision-solicitudes-vacaciones" style={{all: 'unset'}}>
+        <ListItem disablePadding>
+          <ListItemButton>
+            <ListItemText>Revisón de solicitudes</ListItemText>
+          </ListItemButton>
+        </ListItem>
+      </Link>
+      <Divider />
     </List>
   );
 };

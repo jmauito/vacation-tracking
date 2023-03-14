@@ -60,14 +60,14 @@ export const VacationRequest = () => {
                         </p>
 
                     </Grid>
+                </Grid>
+                <Grid
+                    item
+                >
 
-                    <Grid
-                        fullwidth
-                        item xs={4}>
                         <Button variant="contained" onClick={prueba}> Registrar el elemento </Button>
 
                     </Grid>
-                </Grid>
             </Grid>
         </MainTemplate>
     )
