@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
@@ -14,7 +14,17 @@ const theme = createTheme({
     },
   });
 
-export const RequestDetails = () => {
+export const RequestDetails = ({setShowDetail, solicitudId}) => {
+
+    const onReturn = () => {
+        setShowDetail(false);
+    }
+
+    useEffect(() => {
+      console.log(solicitudId)
+    }, [])
+    
+
     return (
         <Box>
             <Grid>
@@ -48,7 +58,7 @@ export const RequestDetails = () => {
             </Grid>
             <Grid container m={12} spacing={1} textAlign="center">
                 <ThemeProvider theme={theme}>
-                    <Button color="neutral" variant="contained" >
+                    <Button color="neutral" variant="contained" onClick={onReturn} >
                         Retomar 
                     </Button>
                 </ThemeProvider>
