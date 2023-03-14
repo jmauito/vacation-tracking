@@ -6,4 +6,6 @@ import java.util.Optional;
 
 public interface IEmployeeDAO {
     Optional<Employee> findById(Long id);
+
+    Optional<Employee> findByUserId(Long userId);
 }

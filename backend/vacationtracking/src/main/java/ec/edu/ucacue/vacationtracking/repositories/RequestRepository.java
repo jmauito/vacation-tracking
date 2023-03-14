@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface RequestRepository extends JpaRepository<Request, Long> {
     List<Request> findByValidated(boolean validated);
+    List<Request> findByEmployeeId(Long employeeId);
 }

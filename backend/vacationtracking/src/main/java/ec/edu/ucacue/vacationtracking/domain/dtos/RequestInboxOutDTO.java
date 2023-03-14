@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class RequestOutDTO {
+public class RequestInboxOutDTO {
     private Long requestId;
     private Long employeeId;
     private String employeeName;

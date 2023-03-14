@@ -1,7 +1,8 @@
 package ec.edu.ucacue.vacationtracking.services;
 
 import ec.edu.ucacue.vacationtracking.domain.Request;
-import ec.edu.ucacue.vacationtracking.domain.dtos.RequestOutDTO;
+import ec.edu.ucacue.vacationtracking.domain.dtos.RequestByEmployeeOutDTO;
+import ec.edu.ucacue.vacationtracking.domain.dtos.RequestInboxOutDTO;
 import ec.edu.ucacue.vacationtracking.repositories.IRequestDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,11 +15,11 @@ public class RequestService {
     @Autowired
     IRequestDAO requestDAO;
 
-    public List<RequestOutDTO> findPending(){
+    public List<RequestInboxOutDTO> findPending(){
         List<Request> requestList = requestDAO.findPending();
-        List<RequestOutDTO> requestOutDTOList = new ArrayList<>();
+        List<RequestInboxOutDTO> requestInboxOutDTOList = new ArrayList<>();
         for (Request request: requestList) {
-            requestOutDTOList.add( RequestOutDTO.builder()
+            requestInboxOutDTOList.add( RequestInboxOutDTO.builder()
                             .requestId( request.getId())
                             .employeeId(request.getEmployee().getId())
                             .employeeName(request.getEmployee().getName())
@@ -29,6 +30,21 @@ public class RequestService {
                             .comment(request.getComment())
                     .build() );
         }
-        return requestOutDTOList;
+        return requestInboxOutDTOList;
+    }
+
+    public List<RequestByEmployeeOutDTO> findPendingByEmployee(Long employeeId){
+        List<Request> requestList = requestDAO.findPendingByEmployee(employeeId);
+        List<RequestByEmployeeOutDTO> requestByEmployeeOutDTOList = new ArrayList<>();
+        for(Request request : requestList){
+            requestByEmployeeOutDTOList.add( RequestByEmployeeOutDTO.builder()
+                            .requestId(request.getId())
+                            .requestTypeName(request.getRequestType().getName())
+                            .startDate(request.getStartDate().toString())
+                            .finishDate(request.getFinishDate().toString())
+                            .title(request.getTitle())
+                    .build() );
+        }
+        return requestByEmployeeOutDTOList;
     }
 }

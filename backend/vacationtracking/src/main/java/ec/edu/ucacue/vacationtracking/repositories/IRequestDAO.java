@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface IRequestDAO {
     List<Request> findPending();
+    List<Request> findPendingByEmployee(Long userId);
 }

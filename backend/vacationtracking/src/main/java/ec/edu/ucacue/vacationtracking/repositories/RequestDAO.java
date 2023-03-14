@@ -16,4 +16,9 @@ public class RequestDAO implements IRequestDAO{
     public List<Request> findPending() {
         return requestRepository.findByValidated(true);
     }
+
+    @Override
+    public List<Request> findPendingByEmployee(Long employeeId) {
+        return requestRepository.findByEmployeeId(employeeId);
+    }
 }
