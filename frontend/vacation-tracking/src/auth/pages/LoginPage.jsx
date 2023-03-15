@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Grid, TextField, Typography } from '@mui/material'
+import { Alert, Grid, TextField, Typography } from '@mui/material'
 import Button from '@mui/material/Button';
 import  useAuthentificationManager  from '../../hooks/useAuthentificationManager';
 import { useContext } from 'react';
@@ -49,6 +49,13 @@ export const LoginPage = () => {
                     <Grid
                         container
                     >
+                     <Grid item xs={12} sx={{mt: 2}}>
+                        {
+                        statusLogin.errorMessage && <Alert severity="error">
+                                                        Credenciales incorrectas
+                                                    </Alert>
+                        }
+                    </Grid>
                         <Grid
                             item
                             xs={12}
