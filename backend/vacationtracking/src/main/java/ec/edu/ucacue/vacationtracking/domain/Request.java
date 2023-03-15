@@ -24,7 +24,6 @@ public class Request {
     private Date finishDate;
     @ManyToOne
     private RequestType requestType;
-    private boolean validated;
     @ManyToOne
     private Employee employee;
     private RequestStatus status;

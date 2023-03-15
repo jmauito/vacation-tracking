@@ -1,16 +1,25 @@
 package ec.edu.ucacue.vacationtracking.services;
 
 import ec.edu.ucacue.vacationtracking.config.JwtService;
+import ec.edu.ucacue.vacationtracking.domain.Employee;
 import ec.edu.ucacue.vacationtracking.domain.Request;
+import ec.edu.ucacue.vacationtracking.domain.RequestType;
+import ec.edu.ucacue.vacationtracking.domain.User;
+import ec.edu.ucacue.vacationtracking.domain.dtos.InsertRequestInDTO;
 import ec.edu.ucacue.vacationtracking.domain.dtos.RequestByEmployeeDetailOutDTO;
 import ec.edu.ucacue.vacationtracking.domain.dtos.RequestByEmployeeOutDTO;
 import ec.edu.ucacue.vacationtracking.domain.dtos.RequestInboxOutDTO;
+import ec.edu.ucacue.vacationtracking.domain.enums.RequestStatus;
 import ec.edu.ucacue.vacationtracking.exceptions.ResourceNotFoundException;
 import ec.edu.ucacue.vacationtracking.repositories.IRequestDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +30,15 @@ public class RequestService {
 
     @Autowired
     JwtService jwtService;
+
+    @Autowired
+    UserService userService;
+
+    @Autowired
+    EmployeeService employeeService;
+
+    @Autowired
+    RequestTypeService requestTypeService;
 
     public List<RequestInboxOutDTO> findPending(){
         List<Request> requestList = requestDAO.findPending();
@@ -93,5 +111,30 @@ public class RequestService {
                 .observation(request.getObservation())
                 .build();
         return requestByEmployeeDetailOutDTO;
+    }
+
+    public Request insert(InsertRequestInDTO insertRequestInDTO, String jwt) throws ParseException {
+        String token = jwtService.getTokenFromAuthorizationHeader(jwt);
+        String email = jwtService.extractUsername(token);
+        User user = userService.findByUserName(email);
+        Employee employee = employeeService.findByUserId(user);
+        RequestType requestType = requestTypeService.findById(insertRequestInDTO.getRequestTypeId());
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date startDate = dateFormat.parse(insertRequestInDTO.getStartDate());
+        Date finishDate = dateFormat.parse(insertRequestInDTO.getFinishDate());
+
+        Request request = Request.builder()
+                .title(insertRequestInDTO.getTitle())
+                .comment(insertRequestInDTO.getComment())
+                .startDate(startDate)
+                .finishDate(finishDate)
+                .employee(employee)
+                .requestType(requestType)
+                .status(RequestStatus.PENDING)
+                .build();
+
+        Request savedRequest = requestDAO.save(request);
+        return savedRequest;
     }
 }

@@ -2,7 +2,9 @@ package ec.edu.ucacue.vacationtracking.controllers;
 
 import ec.edu.ucacue.vacationtracking.config.JwtService;
 import ec.edu.ucacue.vacationtracking.domain.Employee;
+import ec.edu.ucacue.vacationtracking.domain.Request;
 import ec.edu.ucacue.vacationtracking.domain.User;
+import ec.edu.ucacue.vacationtracking.domain.dtos.InsertRequestInDTO;
 import ec.edu.ucacue.vacationtracking.domain.dtos.RequestByEmployeeDetailOutDTO;
 import ec.edu.ucacue.vacationtracking.domain.dtos.RequestByEmployeeOutDTO;
 import ec.edu.ucacue.vacationtracking.services.EmployeeService;
@@ -11,11 +13,11 @@ import ec.edu.ucacue.vacationtracking.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
+import java.text.ParseException;
 import java.util.List;
 
 @Controller
@@ -44,5 +46,21 @@ public class RequestByEmployeeController {
     public ResponseEntity<RequestByEmployeeDetailOutDTO> findById(@PathVariable Long requestId, @RequestHeader("Authorization") String jwt){
         RequestByEmployeeDetailOutDTO requestByEmployeeDetailOutDTO = requestService.findEmployeeRequestById(requestId, jwt);
         return ResponseEntity.ok(requestByEmployeeDetailOutDTO);
+    }
+
+    @PostMapping
+    public ResponseEntity<Object> insertRequest(@RequestBody InsertRequestInDTO insertRequestInDTO, @RequestHeader("Authorization") String jwt){
+        Request request = null;
+        try {
+            request = requestService.insert(insertRequestInDTO, jwt);
+        }catch (ParseException ex){
+            ResponseEntity.badRequest().header("Error", "Revisar el formato de las fechas");
+        }
+
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(request.getId())
+                .toUri();
+        return ResponseEntity.created(location).build();
     }
 }

@@ -10,4 +10,6 @@ public interface IRequestDAO {
     List<Request> findPendingByEmployee(Long userId);
 
     Optional<Request> findById(Long requestId);
+
+    Request save(Request request);
 }

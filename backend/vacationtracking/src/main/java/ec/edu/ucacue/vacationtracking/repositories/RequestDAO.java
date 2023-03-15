@@ -28,4 +28,10 @@ public class RequestDAO implements IRequestDAO{
     public Optional<Request> findById(Long requestId) {
         return requestRepository.findById(requestId);
     }
+
+    @Override
+    public Request save(Request request) {
+        Request savedRequest = requestRepository.saveAndFlush(request);
+        return savedRequest;
+    }
 }
