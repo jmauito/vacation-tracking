@@ -1,6 +1,7 @@
 package ec.edu.ucacue.vacationtracking.repositories;
 
 import ec.edu.ucacue.vacationtracking.domain.Request;
+import ec.edu.ucacue.vacationtracking.domain.enums.RequestStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -14,7 +15,7 @@ public class RequestDAO implements IRequestDAO{
 
     @Override
     public List<Request> findPending() {
-        return requestRepository.findByValidated(true);
+        return requestRepository.findByStatus(RequestStatus.PENDING);
     }
 
     @Override

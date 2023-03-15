@@ -1,5 +1,6 @@
 package ec.edu.ucacue.vacationtracking.domain.dtos;
 
+import ec.edu.ucacue.vacationtracking.domain.enums.RequestStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,5 +16,6 @@ public class RequestByEmployeeOutDTO {
     private String startDate;
     private String finishDate;
     private String title;
+    private RequestStatus status;
 
 }

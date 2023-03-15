@@ -1,5 +1,6 @@
 package ec.edu.ucacue.vacationtracking.domain;
 
+import ec.edu.ucacue.vacationtracking.domain.enums.RequestStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,4 +27,5 @@ public class Request {
     private boolean validated;
     @ManyToOne
     private Employee employee;
+    private RequestStatus status;
 }
