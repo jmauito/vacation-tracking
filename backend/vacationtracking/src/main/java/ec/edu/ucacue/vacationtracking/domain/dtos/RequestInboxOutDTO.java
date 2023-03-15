@@ -14,6 +14,7 @@ public class RequestInboxOutDTO {
     private Long employeeId;
     private String employeeName;
     private Long requestTypeId;
+    private String requestTypeName;
     private String startDate;
     private String finishDate;
     private String title;
