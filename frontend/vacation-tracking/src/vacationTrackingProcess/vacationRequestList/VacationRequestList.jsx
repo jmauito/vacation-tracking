@@ -1,11 +1,10 @@
-import React, {useState, useEffect} from "react";
+import React, {useState,useEffect} from "react";
 import { Box, Grid } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import Button from "@mui/material/Button";
 import { MainTemplate } from "../../components/template/MainTemplate";
 import { VacationRequesApproval } from "../vacationRequestApproval/VacationRequestApproval";
-
-
+import useVacationTrackingService from "../../hooks/useVacationTrackingService";
 
 const rows = [
   {
@@ -45,6 +44,7 @@ const rows = [
 export const VacationRequestList = () => {
 
   const [showSolicitud, setshowSolicitud] = useState(false);
+  const {getData} = useVacationTrackingService()
 
   const columns = [
   { field: "id", headerName: "Nro", width: 90 },
@@ -92,10 +92,18 @@ export const VacationRequestList = () => {
   const onValidate = () => {
     alert('validate');
     setshowSolicitud(true);
+    setshowSolicitud(false);
   }
 
   useEffect(() => {
-   setshowSolicitud(false);
+
+  const getDataRequest = async() => {
+    const response = await getData('request-inbox');
+    console.log(response)
+  }
+ 
+  getDataRequest();
+
   }, [])
   
 
