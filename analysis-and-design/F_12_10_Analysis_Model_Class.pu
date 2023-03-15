@@ -9,6 +9,9 @@ class Designation{
     - startDate: Date
     - endDate: Date
 }
+class User{
+    - email: String
+}
 class Employee{
     - name: String
 }
@@ -17,8 +20,16 @@ class Request{
     - comments:String
     - hours: int 
     - dates: Date
+    - observations: String
     + validate()
 }
+
+enum RequestStatus{
+    PENDING
+    APPROVED
+    REJECTED
+}
+
 class Grant{
     - hours: int
     - expires: Date 
@@ -35,6 +46,9 @@ abstract class Restriction{
     + validate()
 }
 
+class RequestType{
+    - name: String
+}
 
 
 Location "1" <-- "*" Designation : -location
@@ -43,10 +57,15 @@ Designation "*" <--o "1" Employee : -designations
 Employee  "-employee *" -- "-manager *" Employee
 Employee "1" *--> "*" Request : -requests
 Employee "1" *--> "*" Grant : -grants
+User "1" <--o "1" Employee
 Category "-category 0..1 " -- "-grant *" Grant
 Grant  "-grant 1" -- "-restriction *" Restriction
-
+Request "*" -- "1" Grant
 Restriction -- Designation
+
+Request "*" *--> "1" RequestType
+Request --> "status" RequestStatus
+
 
 class DateExclusionRestriction{}
 class AdjacentDayRestriction

@@ -3,6 +3,7 @@ package ec.edu.ucacue.vacationtracking.controllers;
 import ec.edu.ucacue.vacationtracking.config.JwtService;
 import ec.edu.ucacue.vacationtracking.domain.Employee;
 import ec.edu.ucacue.vacationtracking.domain.User;
+import ec.edu.ucacue.vacationtracking.domain.dtos.RequestByEmployeeDetailOutDTO;
 import ec.edu.ucacue.vacationtracking.domain.dtos.RequestByEmployeeOutDTO;
 import ec.edu.ucacue.vacationtracking.services.EmployeeService;
 import ec.edu.ucacue.vacationtracking.services.RequestService;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -36,5 +38,11 @@ public class RequestByEmployeeController {
         Employee employee = employeeService.findByUserId(user);
         List<RequestByEmployeeOutDTO> requestByEmployeeOutDTOList = requestService.findPendingByEmployee(employee.getId());
         return ResponseEntity.ok(requestByEmployeeOutDTOList);
+    }
+
+    @GetMapping("/{requestId}")
+    public ResponseEntity<RequestByEmployeeDetailOutDTO> findById(@PathVariable Long requestId, @RequestHeader("Authorization") String jwt){
+        RequestByEmployeeDetailOutDTO requestByEmployeeDetailOutDTO = requestService.findEmployeeRequestById(requestId, jwt);
+        return ResponseEntity.ok(requestByEmployeeDetailOutDTO);
     }
 }

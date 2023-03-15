@@ -1,6 +1,8 @@
 package ec.edu.ucacue.vacationtracking.services;
 
+import ec.edu.ucacue.vacationtracking.config.JwtService;
 import ec.edu.ucacue.vacationtracking.domain.Request;
+import ec.edu.ucacue.vacationtracking.domain.dtos.RequestByEmployeeDetailOutDTO;
 import ec.edu.ucacue.vacationtracking.domain.dtos.RequestByEmployeeOutDTO;
 import ec.edu.ucacue.vacationtracking.domain.dtos.RequestInboxOutDTO;
 import ec.edu.ucacue.vacationtracking.exceptions.ResourceNotFoundException;
@@ -16,6 +18,9 @@ import java.util.Optional;
 public class RequestService {
     @Autowired
     IRequestDAO requestDAO;
+
+    @Autowired
+    JwtService jwtService;
 
     public List<RequestInboxOutDTO> findPending(){
         List<Request> requestList = requestDAO.findPending();
@@ -66,5 +71,27 @@ public class RequestService {
                 .comment(request.getComment())
                 .build();
         return requestInboxOutDTO;
+    }
+
+    public RequestByEmployeeDetailOutDTO findEmployeeRequestById(Long requestId, String token) {
+        String jwt = token.substring(7);
+        String email = jwtService.extractUsername(jwt);
+        Request request = requestDAO.findById(requestId).orElseThrow();
+
+        if(!email.equals(request.getEmployee().getUser().getEmail())){
+            throw new RuntimeException();
+        }
+
+        RequestByEmployeeDetailOutDTO requestByEmployeeDetailOutDTO = RequestByEmployeeDetailOutDTO.builder()
+                .requestId(request.getId())
+                .requestTypeName(request.getRequestType().getName())
+                .startDate(request.getStartDate().toString())
+                .finishDate(request.getFinishDate().toString())
+                .title(request.getTitle())
+                .comment(request.getComment())
+                .status(request.getStatus())
+                .observation(request.getObservation())
+                .build();
+        return requestByEmployeeDetailOutDTO;
     }
 }

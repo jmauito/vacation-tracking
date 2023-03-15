@@ -28,4 +28,5 @@ public class Request {
     @ManyToOne
     private Employee employee;
     private RequestStatus status;
+    private String observation;
 }
