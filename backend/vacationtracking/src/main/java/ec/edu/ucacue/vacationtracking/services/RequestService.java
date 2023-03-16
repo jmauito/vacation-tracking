@@ -10,7 +10,6 @@ import ec.edu.ucacue.vacationtracking.domain.dtos.RequestByEmployeeDetailOutDTO;
 import ec.edu.ucacue.vacationtracking.domain.dtos.RequestByEmployeeOutDTO;
 import ec.edu.ucacue.vacationtracking.domain.dtos.RequestInboxOutDTO;
 import ec.edu.ucacue.vacationtracking.domain.enums.RequestStatus;
-import ec.edu.ucacue.vacationtracking.exceptions.ResourceNotFoundException;
 import ec.edu.ucacue.vacationtracking.repositories.IRequestDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +20,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class RequestService {
@@ -45,7 +43,7 @@ public class RequestService {
         List<RequestInboxOutDTO> requestInboxOutDTOList = new ArrayList<>();
         for (Request request: requestList) {
             requestInboxOutDTOList.add( RequestInboxOutDTO.builder()
-                            .requestId( request.getId())
+                            .id( request.getId())
                             .employeeId(request.getEmployee().getId())
                             .employeeName(request.getEmployee().getName())
                             .requestTypeId(request.getRequestType().getId())
@@ -64,7 +62,7 @@ public class RequestService {
         List<RequestByEmployeeOutDTO> requestByEmployeeOutDTOList = new ArrayList<>();
         for(Request request : requestList){
             requestByEmployeeOutDTOList.add( RequestByEmployeeOutDTO.builder()
-                            .requestId(request.getId())
+                            .id(request.getId())
                             .requestTypeName(request.getRequestType().getName())
                             .startDate(request.getStartDate().toString())
                             .finishDate(request.getFinishDate().toString())
@@ -78,7 +76,7 @@ public class RequestService {
     public RequestInboxOutDTO findById(Long requestId) {
         Request request = requestDAO.findById(requestId).orElseThrow();
         RequestInboxOutDTO requestInboxOutDTO = RequestInboxOutDTO.builder()
-                .requestId( request.getId())
+                .id( request.getId())
                 .employeeId(request.getEmployee().getId())
                 .employeeName(request.getEmployee().getName())
                 .requestTypeId(request.getRequestType().getId())
@@ -136,5 +134,19 @@ public class RequestService {
 
         Request savedRequest = requestDAO.save(request);
         return savedRequest;
+    }
+
+    public void approve(Long requestId, String observation) {
+        Request request = requestDAO.findById(requestId).orElseThrow();
+        request.setObservation(observation);
+        request.setStatus(RequestStatus.APPROVED);
+        requestDAO.save(request);
+    }
+
+    public void reject(Long requestId, String observation) {
+        Request request = requestDAO.findById(requestId).orElseThrow();
+        request.setObservation(observation);
+        request.setStatus(RequestStatus.REJECTED);
+        requestDAO.save(request);
     }
 }
