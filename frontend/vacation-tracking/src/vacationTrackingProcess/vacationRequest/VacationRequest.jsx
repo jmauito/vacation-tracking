@@ -1,25 +1,21 @@
 import { Grid } from '@mui/material'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { TextField, Autocomplete } from '@mui/material';
 import Button from '@mui/material/Button';
 import { MainTemplate } from '../../components/template/MainTemplate';
 import useVacationTrackingService from '../../hooks/useVacationTrackingService';
 
-const countryList = [
-    { label: 'Tomar el tiempo de vacaciones' },
-    { label: 'Solicitar licencia con cargo a vacaciones' },
-];
-
 export const VacationRequest = () => {
 
-    const { getData } = useVacationTrackingService();
+    const { getData } = useVacationTrackingService(); 
+    const [requestTypeList, setRequestTypeList] = useState([]);
 
     useEffect(() => {
-
-        const resultado = async () => {
+        async function resultado() {
             const response = await getData('requests-types');
-            console.log(response);
-        }
+            console.log(response)
+            setRequestTypeList(response);
+            }
         resultado();
     }, [])
 
@@ -31,7 +27,8 @@ export const VacationRequest = () => {
                 </Grid>
                 <Grid item>
                     <Autocomplete
-                        options={countryList}
+                        options={requestTypeList}
+                        getOptionLabel={(option) => option.name}
                         sx={{ width: '410px', height: '70px' }}
                         renderInput={(params) => <TextField {...params} label="Tipo de solicitud" />}
                     />
