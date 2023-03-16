@@ -23,10 +23,10 @@ VALUES(1, 'Tiempo anual de vacaciones'),
 (2, 'Solicitar licencia con cargo a vacaciones');
 
 --
-INSERT INTO REQUEST(ID, TITLE, COMMENT, FINISH_DATE, START_DATE, HOURS, REQUEST_TYPE_ID, VALIDATED, EMPLOYEE_ID, STATUS)
+INSERT INTO REQUEST(ID, TITLE, COMMENT, FINISH_DATE, START_DATE, HOURS, REQUEST_TYPE_ID, EMPLOYEE_ID, STATUS)
 VALUES
-(100, 'Solicitud uno', 'Comentario 1', '2023-01-01', '2023-01-15',0 ,1, TRUE, 1, 0),
-(101, 'Solicitud dos', 'Comentario 2', '2023-02-01', '2023-02-20',0, 2, TRUE, 2, 0),
-(102, 'Solicitud tres', 'Comentario 3', '2023-02-01', '2023-02-20',0, 1, TRUE, 3, 0),
-(103, 'Solicitud cuatro', 'Comentario 4', '2023-02-01', '2023-02-20',0, 2, TRUE, 4, 0),
-(104, 'Solicitud cinco', 'Comentario 5', '2023-02-01', '2023-02-20',0, 1, TRUE, 5, 0);
+(100, 'Solicitud uno', 'Comentario 1', '2023-01-01', '2023-01-15',0 ,1, 1, 0),
+(101, 'Solicitud dos', 'Comentario 2', '2023-02-01', '2023-02-20',0, 2, 2, 0),
+(102, 'Solicitud tres', 'Comentario 3', '2023-02-01', '2023-02-20',0, 1, 3, 0),
+(103, 'Solicitud cuatro', 'Comentario 4', '2023-02-01', '2023-02-20',0, 2, 4, 0),
+(104, 'Solicitud cinco', 'Comentario 5', '2023-02-01', '2023-02-20',0, 1, 5, 0);
