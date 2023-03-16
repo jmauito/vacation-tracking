@@ -6,7 +6,7 @@ import { MainTemplate } from "../../components/template/MainTemplate";
 import { VacationRequesApproval } from "../vacationRequestApproval/VacationRequestApproval";
 import useVacationTrackingService from "../../hooks/useVacationTrackingService";
 
-const rows = [
+let rows2 = [
   {
     id: 1,
     Nombres: "Snow",
@@ -45,29 +45,30 @@ export const VacationRequestList = () => {
 
   const [showSolicitud, setshowSolicitud] = useState(false);
   const {getData} = useVacationTrackingService()
+  const [rows, setRows] = useState({})
 
   const columns = [
   { field: "id", headerName: "Nro", width: 90 },
   {
-    field: "Nombres",
+    field: "employeeName",
     headerName: "Nombres y Apellidos",
     width: 150,
     editable: true,
   },
   {
-    field: "Tipo",
+    field: "requestTypeId",
     headerName: "Tipo",
     width: 250,
     editable: true,
   },
   {
-    field: "Inicia",
+    field: "startDate",
     headerName: "Inicia",
     width: 150,
     editable: true,
   },
   {
-    field: "Termina",
+    field: "finishDate",
     headerName: "Termina",
     width: 150,
     editable: true,
@@ -100,6 +101,7 @@ export const VacationRequestList = () => {
   const getDataRequest = async() => {
     const response = await getData('request-inbox');
     console.log(response)
+    setRows(response);
   }
  
   getDataRequest();
