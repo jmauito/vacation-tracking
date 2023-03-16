@@ -1,25 +1,23 @@
 import { Grid } from '@mui/material'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { TextField, Autocomplete } from '@mui/material';
 import Button from '@mui/material/Button';
 import { MainTemplate } from '../../components/template/MainTemplate';
 import useVacationTrackingService from '../../hooks/useVacationTrackingService';
 
-const countryList = [
-    { label: 'Tomar el tiempo de vacaciones' },
-    { label: 'Solicitar licencia con cargo a vacaciones' },
-];
-
-
-
 export const VacationRequest = () => {
 
-    const {getData} = useVacationTrackingService();
-    const prueba = async() =>{
-        const response = await getData('health/check');
-        console.log(response);
-    }
+    const { getData } = useVacationTrackingService(); 
+    const [requestTypeList, setRequestTypeList] = useState([]);
 
+    useEffect(() => {
+        async function resultado() {
+            const response = await getData('requests-types');
+            console.log(response)
+            setRequestTypeList(response);
+            }
+        resultado();
+    }, [])
 
     return (
         <MainTemplate>
@@ -29,7 +27,8 @@ export const VacationRequest = () => {
                 </Grid>
                 <Grid item>
                     <Autocomplete
-                        options={countryList}
+                        options={requestTypeList}
+                        getOptionLabel={(option) => option.name}
                         sx={{ width: '410px', height: '70px' }}
                         renderInput={(params) => <TextField {...params} label="Tipo de solicitud" />}
                     />
@@ -64,10 +63,9 @@ export const VacationRequest = () => {
                 <Grid
                     item
                 >
+                    <Button variant="contained" onClick={'resultado'}> Registrar el elemento </Button>
 
-                        <Button variant="contained" onClick={prueba}> Registrar el elemento </Button>
-
-                    </Grid>
+                </Grid>
             </Grid>
         </MainTemplate>
     )
