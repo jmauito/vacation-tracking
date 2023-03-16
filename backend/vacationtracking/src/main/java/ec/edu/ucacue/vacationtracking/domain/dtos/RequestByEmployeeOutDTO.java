@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class RequestByEmployeeOutDTO {
-    private Long requestId;
+    private Long id; // requestId
     private String requestTypeName;
     private String startDate;
     private String finishDate;

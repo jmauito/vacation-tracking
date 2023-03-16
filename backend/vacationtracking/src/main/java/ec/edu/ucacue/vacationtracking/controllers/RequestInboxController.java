@@ -1,5 +1,6 @@
 package ec.edu.ucacue.vacationtracking.controllers;
 
+import ec.edu.ucacue.vacationtracking.domain.dtos.RequestApproveInDTO;
 import ec.edu.ucacue.vacationtracking.domain.dtos.RequestInboxOutDTO;
 import ec.edu.ucacue.vacationtracking.exceptions.ResourceNotFoundException;
 import ec.edu.ucacue.vacationtracking.services.RequestService;
@@ -7,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,5 +34,17 @@ public class RequestInboxController {
         }
 
         return ResponseEntity.ok(requestInboxOutDTO);
+    }
+
+    @PostMapping("/{requestId}/approve")
+    public ResponseEntity<Object> approve(@PathVariable Long requestId, @RequestBody RequestApproveInDTO requestApproveInDTO){
+        requestService.approve(requestId, requestApproveInDTO.getObservation());
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/{requestId}/reject")
+    public ResponseEntity<Object> reject(@PathVariable Long requestId, @RequestBody RequestApproveInDTO requestApproveInDTO){
+        requestService.reject(requestId, requestApproveInDTO.getObservation());
+        return ResponseEntity.ok().build();
     }
 }

@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class RequestInboxOutDTO {
-    private Long requestId;
+    private Long id; //requestId
     private Long employeeId;
     private String employeeName;
     private Long requestTypeId;
