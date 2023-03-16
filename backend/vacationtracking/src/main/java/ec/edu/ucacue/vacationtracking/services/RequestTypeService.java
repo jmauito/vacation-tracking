@@ -15,4 +15,8 @@ public class RequestTypeService {
     public List<RequestType> findAll(){
         return requestTypeDAO.findAll();
     }
+
+    public RequestType findById(Long requestTypeId) {
+        return requestTypeDAO.findById(requestTypeId).orElseThrow();
+    }
 }
