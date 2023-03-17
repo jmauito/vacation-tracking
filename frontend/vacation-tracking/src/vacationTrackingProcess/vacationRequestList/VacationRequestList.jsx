@@ -93,18 +93,17 @@ export const VacationRequestList = () => {
   const onValidate = () => {
     alert('validate');
     setshowSolicitud(true);
-    setshowSolicitud(false);
   }
 
   useEffect(() => {
-
-  const getDataRequest = async() => {
-    const response = await getData('request-inbox');
-    console.log(response)
-    setRows(response);
-  }
- 
-  getDataRequest();
+    setshowSolicitud(false);
+    const getDataRequest = async() => {
+      const response = await getData('request-inbox');
+      console.log(response)
+      setRows(response);
+    }
+  
+    getDataRequest();
 
   }, [])
   
