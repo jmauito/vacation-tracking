@@ -21,7 +21,7 @@ const useAuthentificationManager = () => {
             setStatusLogin({
                 email: response.username, 
                 status: "authenticated",
-                displayName: "Valeria",
+                displayName: response.name,
                 errorMessage: null, 
                 token: response.token,
                 role: response.role,
