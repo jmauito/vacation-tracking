@@ -2,20 +2,20 @@ INSERT INTO ROLE(ID, NAME)
 VALUES (1, 'ROLE_ADMIN'),
 (2, 'ROLE_USER');
 --
-INSERT INTO _USER(ID, PASSWORD, EMAIL, ROLE_ID)
-VALUES(100, '$2a$10$iOp5PLISgwL.xxdvQFl14uT506s8bYXR4B./3QU6teIkFRno3bUjq', 'nick.fury@mail.com', 1),
-(200, '$2a$10$629nhy94B86rW16/KdJOoet.f3XnAPC8CmKxyLjWPXt8eXHwFvaui', 'natasha.romanoff@mail.com', 2),
-(300, '$2a$10$629nhy94B86rW16/KdJOoet.f3XnAPC8CmKxyLjWPXt8eXHwFvaui', 'peter.parker@mail.com', 2),
-(400, '$2a$10$629nhy94B86rW16/KdJOoet.f3XnAPC8CmKxyLjWPXt8eXHwFvaui', 'tony.stark@mail.com', 2),
-(500, '$2a$10$629nhy94B86rW16/KdJOoet.f3XnAPC8CmKxyLjWPXt8eXHwFvaui', 'clark.kent@mail.com', 2);
+INSERT INTO _USER(ID, PASSWORD, EMAIL, ROLE_ID, FIRST_NAME, LAST_NAME)
+VALUES(100, '$2a$10$iOp5PLISgwL.xxdvQFl14uT506s8bYXR4B./3QU6teIkFRno3bUjq', 'nick.fury@mail.com', 1, 'NICK', 'FURY'),
+(200, '$2a$10$629nhy94B86rW16/KdJOoet.f3XnAPC8CmKxyLjWPXt8eXHwFvaui', 'natasha.romanoff@mail.com', 2, 'NATASHA', 'ROMANOFF'),
+(300, '$2a$10$629nhy94B86rW16/KdJOoet.f3XnAPC8CmKxyLjWPXt8eXHwFvaui', 'peter.parker@mail.com', 2, 'PETER', 'PARKER'),
+(400, '$2a$10$629nhy94B86rW16/KdJOoet.f3XnAPC8CmKxyLjWPXt8eXHwFvaui', 'tony.stark@mail.com', 2, 'TONY', 'STARK'),
+(500, '$2a$10$629nhy94B86rW16/KdJOoet.f3XnAPC8CmKxyLjWPXt8eXHwFvaui', 'clark.kent@mail.com', 2, 'CLARK', 'KENT');
 --
 
-INSERT INTO EMPLOYEE(ID, NAME, USER_ID)
-VALUES (1, 'NICK FURY', 100),
-(2, 'NATASHA ROMANOFF', 200),
-(3, 'PETER PARKER', 300),
-(4, 'TONY STARK', 400),
-(5, 'CLARK KENT', 500);
+INSERT INTO EMPLOYEE(ID, USER_ID)
+VALUES (1, 100),
+(2, 200),
+(3, 300),
+(4, 400),
+(5, 500);
 
 --
 INSERT INTO REQUEST_TYPE(ID, NAME)

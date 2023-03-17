@@ -18,7 +18,6 @@ public class Employee {
     @Id
     @GeneratedValue
     private Long id;
-    private String name;
     @OneToOne
     private User user;
 }
