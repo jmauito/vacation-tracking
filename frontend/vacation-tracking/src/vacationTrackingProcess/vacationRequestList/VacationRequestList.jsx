@@ -90,8 +90,8 @@ export const VacationRequestList = () => {
   },
 ];
 
-  const onValidate = () => {
-    alert('validate');
+  const onValidate = (params) => {
+  console.log (params.row);
     setshowSolicitud(true);
   }
 
