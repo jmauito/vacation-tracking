@@ -6,53 +6,16 @@ import { RequestDetails } from "../requestDetails/RequestDetails";
 import useVacationTrackingService from "../../hooks/useVacationTrackingService";
 
 
-const rows2 = [
-  {
-    id: 1,
-    Tipo: "Tiempo de vacaciones",
-    Inicia: "01-Ene-2023",
-    Termina: "15-Ene-2023",
-    Comentario: "",
-    Accion: "Detalles",
-  },
-  {
-    id: 2,
-    Tipo: "Licencia",
-    Inicia: "01-Ene-2023",
-    Termina: "15-Ene-2023",
-    Comentario: "",
-    Accion: "Detalles",
-  },
-  {
-    id: 3,
-    Tipo: "Tiempo de vacaciones",
-    Inicia: "30-Ene-2023",
-    Termina: "15-Feb-2023",
-    Comentario: "Solicitud de licencia para atender actividades familiares",
-    Accion: "Detalles",
-  },
-  {
-    id: 4,
-    Tipo: "Licencia",
-    Inicia: "20-Feb-2023",
-    Termina: "01-Mar-2023",
-    Comentario: "",
-    Accion: "Detalles",
-  },
-];
-
-
-
 export const StatusRequest = () => {
 
   const [showDetail, setShowDetail] = useState(false);
   const [solicitudId, setSolicitudId] = useState(null);
   const [rows, setRows] = useState([]);
+  const { getData } = useVacationTrackingService();
 
- 
 
   const columns = [
-    { field: "requestId", headerName: "Nro", width: 90 },
+    { field: "id", headerName: "Nro", width: 90 },
     {
       field: "requestTypeName",
       headerName: "Tipo",
@@ -108,13 +71,6 @@ export const StatusRequest = () => {
     setSolicitudId(params.row.id);
   };
  
-
-  const { getData } = useVacationTrackingService();
-  // const prueba = async () => {
-  //   const response = await getData('my-requests');
-  //   console.log(response);
-  // }
-
   useEffect(() => {
     setShowDetail(false);
     setSolicitudId(null);
@@ -150,7 +106,7 @@ export const StatusRequest = () => {
             </Grid>
             <Grid item>
               <Box sx={{ height: 315, width: "100%" }}>
-                <DataGrid rows={rows} columns={columns} getRowId={(row) => row.requestId}/>
+                <DataGrid rows={rows} columns={columns} />
               </Box>
             </Grid>
           </Grid>
