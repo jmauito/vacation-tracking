@@ -45,7 +45,8 @@ export const VacationRequestList = () => {
 
   const [showSolicitud, setshowSolicitud] = useState(false);
   const {getData} = useVacationTrackingService()
-  const [rows, setRows] = useState({})
+  const [rows, setRows] = useState({});
+  const [requestId, setRequestId] = useState(null);
 
   const columns = [
   { field: "id", headerName: "Nro", width: 90 },
@@ -91,7 +92,7 @@ export const VacationRequestList = () => {
 ];
 
   const onValidate = (params) => {
-  console.log (params.row);
+  setRequestId (params.row.id);
     setshowSolicitud(true);
   }
 
@@ -112,7 +113,7 @@ export const VacationRequestList = () => {
     <MainTemplate>
       {
         showSolicitud
-        ? <VacationRequesApproval />
+        ? <VacationRequesApproval requestId={requestId}/>
         :
         <Grid container direction="column" spacing={2} m={4}>
         <Grid item>

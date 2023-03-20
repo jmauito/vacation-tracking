@@ -4,9 +4,61 @@ import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import { useEffect, useState } from 'react';
+import useVacationTrackingService from "../../hooks/useVacationTrackingService";
 
-export const VacationRequesApproval = () => {
 
+export const VacationRequesApproval = ({requestId}) => {
+    const {getData, postData} = useVacationTrackingService()
+    const [comment, setComment] = useState(null)
+    const [employeeName, setEmployeeName] = useState(null)
+    const [finishDate, setFinishDate] = useState(null)
+    const [startDate, setStartDate] = useState(null)
+    const [requestTypeName, setRequestTypeName] = useState(null)
+    const [observacion, setObservacion] = useState(null)
+    const [id, setId] = useState(null)
+
+    const onclickApprove = async() => {
+        alert(111)
+    
+        const response = await postData('request-inbox/'+id+'/approve',{
+            "observation":observacion 
+        });
+
+        if (response){
+            alert("solicitud aprovada correctamente")
+        }
+    }
+    const onclickDenny = async() => {
+        alert (112)
+
+        const response = await postData('request-inbox/'+id+'/reject',{
+            "observation":observacion
+        });
+
+        if (response){
+            alert("solicitud rechazada")
+        }
+    }
+
+ useEffect(() => {
+    const getDataRequest = async() => {
+        const response = await getData('request-inbox/'+requestId);
+        console.log(response)
+        setComment (response.comment)
+        setEmployeeName (response.employeeName)
+        setFinishDate (response.finishDate)
+        setStartDate (response.startDate)
+        setRequestTypeName (response.requestTypeName)
+        setId(response.id)
+        
+
+      }
+
+         getDataRequest();
+
+ }, [])
+ 
 
 
     return (
@@ -18,27 +70,27 @@ export const VacationRequesApproval = () => {
         </Grid>    
         <Grid item>
             <Typography variant="h6">
-                Nombre: Erika Salomé Astudillo
+                Nombre: {employeeName}
             </Typography>
         </Grid>
         <Grid item>
             <Typography variant="h6" gutterBottom>
-                Tipo:      Licencia
+                Tipo:     {requestTypeName}
             </Typography>
         </Grid>
         <Grid item>
             <Typography variant="h6" gutterBottom>
-                Inicia:      15 de agosto
+                Inicia:      {startDate}
             </Typography>
         </Grid>
         <Grid item>
             <Typography variant="h6" gutterBottom>
-                Termina:    01 de septiembre
+                Termina:    {finishDate}
             </Typography>
         </Grid>
         <Grid item>
             <Typography variant="h6" gutterBottom>
-                Comentarios:      viaje familiar
+                Comentarios:  {comment}
             </Typography>
         </Grid>
         <Grid item>
@@ -53,6 +105,7 @@ export const VacationRequesApproval = () => {
             <TextField
                 id="standard-multiline-flexible"
                 label="Observaciones"
+                onChange={(e) => {setObservacion(e.target.value)}}
                 multiline
                 maxRows={4}
                 variant="standard"
@@ -62,10 +115,11 @@ export const VacationRequesApproval = () => {
         </Grid>
             <Grid item container m={12} spacing={1}>
                 <Stack spacing={2} direction="row">
-                    <Button variant="contained" color="success">
+                    <Button variant="contained" color="success" onClick={onclickApprove}>
                         Aprobar Solicitud
+
                     </Button>
-                    <Button variant="contained" color="error">
+                    <Button variant="contained" color="error" onClick={onclickDenny}>
                         Rechazar Solicitud
                     </Button>
                 </Stack>
