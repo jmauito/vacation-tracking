@@ -4,43 +4,17 @@ import { DataGrid } from "@mui/x-data-grid";
 import { MainTemplate } from "../../components/template/MainTemplate";
 import { RequestDetails } from "../requestDetails/RequestDetails";
 import useVacationTrackingService from "../../hooks/useVacationTrackingService";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 
-const rows2 = [
-  {
-    id: 1,
-    Tipo: "Tiempo de vacaciones",
-    Inicia: "01-Ene-2023",
-    Termina: "15-Ene-2023",
-    Comentario: "",
-    Accion: "Detalles",
+const theme = createTheme({
+  palette: {
+      neutral: {
+          main: '#64748B',
+          contrastText: '#fff',
+      },
   },
-  {
-    id: 2,
-    Tipo: "Licencia",
-    Inicia: "01-Ene-2023",
-    Termina: "15-Ene-2023",
-    Comentario: "",
-    Accion: "Detalles",
-  },
-  {
-    id: 3,
-    Tipo: "Tiempo de vacaciones",
-    Inicia: "30-Ene-2023",
-    Termina: "15-Feb-2023",
-    Comentario: "Solicitud de licencia para atender actividades familiares",
-    Accion: "Detalles",
-  },
-  {
-    id: 4,
-    Tipo: "Licencia",
-    Inicia: "20-Feb-2023",
-    Termina: "01-Mar-2023",
-    Comentario: "",
-    Accion: "Detalles",
-  },
-];
-
+});
 
 export const StatusRequest = () => {
   
@@ -89,9 +63,11 @@ export const StatusRequest = () => {
       renderCell: (params) => {
         return (
           <div>
-            <Button variant="contained" color="primary" onClick={() => { onDetail(params) }}>
-              Detalles
-            </Button>
+            <ThemeProvider theme={theme}>
+              <Button variant="contained" color="neutral" onClick={() => { onDetail(params) }}>
+                Detalles
+              </Button>
+            </ThemeProvider>
           </div>
         );
       },
@@ -100,8 +76,6 @@ export const StatusRequest = () => {
 
 
   const onDetail = (params) => {
-    console.log(params.row);
-    alert("detail");
     setShowDetail(true);
     setSolicitudId(params.row.id);
   };
@@ -115,11 +89,7 @@ export const StatusRequest = () => {
 
     const prueba = async () => {
       const response = await getData('my-requests');
-      console.log(response);
       setRows(response);
-      
-      
-
     }
 
     prueba();
@@ -132,19 +102,23 @@ export const StatusRequest = () => {
         showDetail
           ? <RequestDetails setShowDetail={setShowDetail} solicitudId={solicitudId} />
           :
-          <Grid container direction="column" m={4}>
-            <Grid item>
-              <Typography variant="h5" color="initial">
-                Estado De Solicitudes
-              </Typography>
+          <Grid item container direction="column" justifyContent="center"  alignItems="center">
+            <Grid item container justifyContent="center"  alignItems="flex-start">
+              <Grid item xs={10}>
+                <Typography variant="h5" color="initial">
+                  Estado de solicitudes
+                </Typography>
+              </Grid>
             </Grid>
-            <Grid textAlign={"right"} item>
-              <Typography variant="body1">
-                Dias de vacaciones pendientes 15
-              </Typography>
+            <Grid item container>
+              <Grid item xs={11} textAlign="right">
+                <Typography variant="body1">
+                  Días de vacaciones pendientes: 15
+                </Typography>
+              </Grid>
             </Grid>
-            <Grid item>
-              <Box sx={{ height: 315, width: "100%" }}>
+            <Grid item xs={10}>
+              <Box sx={{ height: 315}}>
                 <DataGrid rows={rows} columns={columns} />
               </Box>
             </Grid>
