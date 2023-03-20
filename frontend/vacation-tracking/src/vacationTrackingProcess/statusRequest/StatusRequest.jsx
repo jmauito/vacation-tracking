@@ -6,12 +6,47 @@ import { RequestDetails } from "../requestDetails/RequestDetails";
 import useVacationTrackingService from "../../hooks/useVacationTrackingService";
 
 
-export const StatusRequest = () => {
+const rows2 = [
+  {
+    id: 1,
+    Tipo: "Tiempo de vacaciones",
+    Inicia: "01-Ene-2023",
+    Termina: "15-Ene-2023",
+    Comentario: "",
+    Accion: "Detalles",
+  },
+  {
+    id: 2,
+    Tipo: "Licencia",
+    Inicia: "01-Ene-2023",
+    Termina: "15-Ene-2023",
+    Comentario: "",
+    Accion: "Detalles",
+  },
+  {
+    id: 3,
+    Tipo: "Tiempo de vacaciones",
+    Inicia: "30-Ene-2023",
+    Termina: "15-Feb-2023",
+    Comentario: "Solicitud de licencia para atender actividades familiares",
+    Accion: "Detalles",
+  },
+  {
+    id: 4,
+    Tipo: "Licencia",
+    Inicia: "20-Feb-2023",
+    Termina: "01-Mar-2023",
+    Comentario: "",
+    Accion: "Detalles",
+  },
+];
 
+
+export const StatusRequest = () => {
+  
   const [showDetail, setShowDetail] = useState(false);
   const [solicitudId, setSolicitudId] = useState(null);
   const [rows, setRows] = useState([]);
-  const { getData } = useVacationTrackingService();
 
 
   const columns = [
@@ -71,6 +106,9 @@ export const StatusRequest = () => {
     setSolicitudId(params.row.id);
   };
  
+
+  const { getData,} = useVacationTrackingService();
+
   useEffect(() => {
     setShowDetail(false);
     setSolicitudId(null);
@@ -79,6 +117,7 @@ export const StatusRequest = () => {
       const response = await getData('my-requests');
       console.log(response);
       setRows(response);
+      
       
 
     }
