@@ -9,7 +9,7 @@ import useVacationTrackingService from "../../hooks/useVacationTrackingService";
 
 
 export const VacationRequesApproval = ({requestId}) => {
-    const {getData} = useVacationTrackingService()
+    const {getData, postData} = useVacationTrackingService()
     const [comment, setComment] = useState(null)
     const [employeeName, setEmployeeName] = useState(null)
     const [finishDate, setFinishDate] = useState(null)
@@ -18,8 +18,27 @@ export const VacationRequesApproval = ({requestId}) => {
     const [observacion, setObservacion] = useState(null)
     const [id, setId] = useState(null)
 
-    const onclickApprove = () => {
+    const onclickApprove = async() => {
         alert(111)
+    
+        const response = await postData('request-inbox/'+id+'/approve',{
+            "observation":observacion 
+        });
+
+        if (response){
+            alert("solicitud aprovada correctamente")
+        }
+    }
+    const onclickDenny = async() => {
+        alert (112)
+
+        const response = await postData('request-inbox/'+id+'/reject',{
+            "observation":observacion
+        });
+
+        if (response){
+            alert("solicitud rechazada")
+        }
     }
 
  useEffect(() => {
@@ -100,7 +119,7 @@ export const VacationRequesApproval = ({requestId}) => {
                         Aprobar Solicitud
 
                     </Button>
-                    <Button variant="contained" color="error">
+                    <Button variant="contained" color="error" onClick={onclickDenny}>
                         Rechazar Solicitud
                     </Button>
                 </Stack>

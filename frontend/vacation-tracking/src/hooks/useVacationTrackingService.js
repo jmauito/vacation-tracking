@@ -48,7 +48,7 @@ const useVacationTrackingService = () => {
     const finalUrl = `${baseUrl}/${url}` 
     return await axios
       .post(finalUrl, { ...bodyParameter }, { ...basicParameters })
-      .then((response) => response.data)
+      .then((response) => response)
       .catch(error => {
         console.log(error);
         return []
