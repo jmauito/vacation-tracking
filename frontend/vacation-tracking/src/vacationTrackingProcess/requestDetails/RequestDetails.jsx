@@ -81,7 +81,7 @@ export const RequestDetails = ({ setShowDetail, solicitudId }) => {
           Jueves
         </Typography>
       </Grid>
-      <Grid container xs={12} justifyContent="center"  alignItems="flex-end">
+      <Grid container justifyContent="center"  alignItems="flex-end">
         <ThemeProvider theme={theme}>
           <Button color="neutral" variant="contained" onClick={onReturn}>
             Retomar

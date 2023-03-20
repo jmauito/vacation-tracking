@@ -13,7 +13,6 @@ export const VacationRequest = () => {
     useEffect(() => {
         async function resultado() {
             const response = await getData('requests-types');
-            console.log(response)
             setRequestTypeList(response);
             }
         resultado();

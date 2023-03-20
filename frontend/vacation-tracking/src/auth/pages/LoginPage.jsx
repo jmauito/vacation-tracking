@@ -11,11 +11,7 @@ export const LoginPage = () => {
     const{statusLogin} = useContext (UserContext);
 
     const onclickLogin = () => {
-     //   alert("Correo:" + correo);
-     //   alert("Contraseña:"+contrasenia)
-
       validateCredentials(correo,contrasenia);
-      console.log(statusLogin)   
     }
 
     const [correo, setCorreo] = useState("");
