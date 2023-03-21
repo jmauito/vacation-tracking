@@ -34,7 +34,7 @@ export const VacationRequestList = () => {
       editable: true,
     },
     {
-      field: "requestTypeId",
+      field: "requestTypeName",
       headerName: "Tipo",
       width: 250,
       editable: true,
