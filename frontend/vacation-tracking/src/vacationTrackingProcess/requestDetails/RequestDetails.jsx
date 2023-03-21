@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
@@ -36,7 +35,7 @@ export const RequestDetails = ({ setShowDetail, solicitudId }) => {
     };
 
     prueba();
-  }, []);
+  }, );
 
   return (
     <Grid container direction="column" p={4} spacing={3}>

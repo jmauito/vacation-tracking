@@ -69,6 +69,15 @@ export const TopSidebar = () => {
             alt="logo de la universidad catolica de cuenca"
           />
         </Box>
+        <Typography
+          variant="body1"
+          sx={{
+            pl: 2,
+            fontSize: "20px",
+          }}
+        >
+          Gestor de vacaciones
+        </Typography>
       </Grid>
       <Grid
         item

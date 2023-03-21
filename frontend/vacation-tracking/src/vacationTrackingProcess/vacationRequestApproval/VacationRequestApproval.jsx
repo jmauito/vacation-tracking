@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { useEffect, useState } from "react";
 import useVacationTrackingService from "../../hooks/useVacationTrackingService";
+import { UserContext } from "../../components/contextManager/UserContext";
+
+
 
 export const VacationRequesApproval = ({ requestId }) => {
   const { getData, postData } = useVacationTrackingService();
@@ -15,6 +18,7 @@ export const VacationRequesApproval = ({ requestId }) => {
   const [requestTypeName, setRequestTypeName] = useState(null);
   const [observacion, setObservacion] = useState(null);
   const [id, setId] = useState(null);
+  const {setShowRequest} = useContext(UserContext);
 
   const onclickApprove = async () => {
     const response = await postData("request-inbox/" + id + "/approve", {
@@ -23,6 +27,7 @@ export const VacationRequesApproval = ({ requestId }) => {
 
     if (response) {
       alert("solicitud aprobada correctamente");
+      setShowRequest(false);
     }
   };
   const onclickDenny = async () => {
@@ -32,6 +37,7 @@ export const VacationRequesApproval = ({ requestId }) => {
 
     if (response) {
       alert("solicitud rechazada");
+
     }
   };
 

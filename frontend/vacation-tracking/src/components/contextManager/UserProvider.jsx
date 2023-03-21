@@ -12,8 +12,10 @@ const UserProvider = ({children}) => {
         role:null,
     });
 
+    const [showRequest, setShowRequest] = useState(false);
+
   return (
-   <UserContext.Provider value={{statusLogin, setStatusLogin}}>
+   <UserContext.Provider value={{statusLogin, setStatusLogin, showRequest, setShowRequest}}>
         {children}
    </UserContext.Provider>
   )

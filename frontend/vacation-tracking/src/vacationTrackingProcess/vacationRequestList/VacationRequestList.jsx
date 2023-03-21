@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Box, Grid, Typography } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import Button from "@mui/material/Button";
@@ -6,6 +6,8 @@ import { MainTemplate } from "../../components/template/MainTemplate";
 import { VacationRequesApproval } from "../vacationRequestApproval/VacationRequestApproval";
 import useVacationTrackingService from "../../hooks/useVacationTrackingService";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { UserContext } from "../../components/contextManager/UserContext";
+
 
 const theme = createTheme({
   palette: {
@@ -17,10 +19,11 @@ const theme = createTheme({
 });
 
 export const VacationRequestList = () => {
-  const [showSolicitud, setshowSolicitud] = useState(false);
+  // const [showSolicitud, setshowSolicitud] = useState(false);
   const { getData } = useVacationTrackingService();
   const [rows, setRows] = useState([]);
   const [requestId, setRequestId] = useState(null);
+  const {showRequest, setShowRequest} = useContext(UserContext);
 
   const columns = [
     { field: "id", headerName: "Nro", width: 90 },
@@ -75,22 +78,22 @@ export const VacationRequestList = () => {
 
   const onValidate = (params) => {
     setRequestId(params.row.id);
-    setshowSolicitud(true);
+    setShowRequest(true);
   };
 
   useEffect(() => {
-    setshowSolicitud(false);
-    const getDataRequest = async () => {
+    const getDataRequest = async() => {
       const response = await getData("request-inbox");
       setRows(response);
     };
 
     getDataRequest();
-  }, []);
+    // eslint-disable-next-line
+  }, [showRequest]); 
 
   return (
     <MainTemplate>
-      {showSolicitud ? (
+      {showRequest ? (
         <VacationRequesApproval requestId={requestId}  />
       ) : (
         <Grid
