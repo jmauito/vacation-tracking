@@ -7,15 +7,29 @@ import useVacationTrackingService from '../../hooks/useVacationTrackingService';
 
 export const VacationRequest = () => {
 
-    const { getData } = useVacationTrackingService(); 
+    const { getData, postData} = useVacationTrackingService(); 
     const [requestTypeList, setRequestTypeList] = useState([]);
-    const [Comment, setComment] = useState(null);
+   const [title, setTitle] = useState(null)
+    const [comment, setComment] = useState(null);
     const [startDate, setStartDate] = useState(null);
     const[finishDate,setFinishDate] = useState(null);
     const [requestTypeId, setRequestTypeId] = useState(null)
 
     const onClickSave = async() =>{
         alert ("Enviado")
+
+        const response = await postData('my-requests',{
+            "requestTypeId": requestTypeId,
+            "title": title,
+            "comment": comment,
+            "startDate": startDate,
+            "finishDate": finishDate
+        });
+
+        if (response){
+            alert("solicitud Enviada")
+        }
+
     }
 
     useEffect(() => {
@@ -23,10 +37,10 @@ export const VacationRequest = () => {
             const response = await getData('requests-types');
             console.log(response);
             setRequestTypeList(response);
-            setComment(response.Comment);
+            setComment(response.comment);
             setFinishDate(response.finishDate);
             setStartDate(response.startDate);
-            
+            setRequestTypeId(response);
             }
         resultado();
     }, [])
@@ -49,15 +63,24 @@ export const VacationRequest = () => {
                 </Grid>
                 <Grid item>
                     <TextField
+                    onChange={(e)=> {setTitle(e.target.value)}}    
+                        value={title}                     
+                        label="Titulo"
+                        multiline
+                        rows={4}
+                        sx={{ width: '500px'}}
+                    />
+                </Grid>           
+                <Grid item>
+                    <TextField
                         onChange={(e)=> {setComment(e.target.value)}}    
-                        value={Comment}                     
+                        value={comment}                     
                         label="Comentarios"
                         multiline
                         rows={4}
-                        sx={{ width: '600px', height: '150px' }}
+                        sx={{ width: '600px',  }}
                     />
                 </Grid>
-
                 <Grid item container>
                     <Grid item xs={4}>
                         <p align="left">
