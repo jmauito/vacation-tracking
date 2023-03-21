@@ -44,8 +44,8 @@ export const StatusRequest = () => {
       editable: true,
     },
     {
-      field: "Comentario",
-      headerName: "Comentario",
+      field: "title",
+      headerName: "Titulo",
       width: 200,
       editable: true,
     },
