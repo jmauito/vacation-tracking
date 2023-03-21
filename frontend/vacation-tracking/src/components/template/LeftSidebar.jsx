@@ -11,7 +11,7 @@ import { UserContext } from '../contextManager/UserContext';
 
 export const LeftSidebar = () => {
 
-  const {statusLogin} = useContext(UserContext);
+  const {statusLogin, setShowRequest} = useContext(UserContext);
   const {role} = statusLogin;
   
   const redirectOptiosMenu = () => {
@@ -41,7 +41,7 @@ export const LeftSidebar = () => {
            <Divider />
             <Link to="/revision-solicitudes-vacaciones" style={{all: 'unset'}}>
               <ListItem disablePadding>
-                <ListItemButton>
+                <ListItemButton onClick={() =>{setShowRequest(false)}}>
                   <ListItemText>Revisón de solicitudes</ListItemText>
                 </ListItemButton>
               </ListItem>
