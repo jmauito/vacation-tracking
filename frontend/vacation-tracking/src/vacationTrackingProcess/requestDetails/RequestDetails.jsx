@@ -19,7 +19,9 @@ export const RequestDetails = ({ setShowDetail, solicitudId }) => {
   const [status, setStatus] = useState(null);
   const [requestTypeName, setRequestTypeName] = useState(null);
   const [startDate, setStartDate] = useState(null);
+  const [finishDate, setFinishDate] =useState (null);
   const [comment, setComment] = useState(null);
+  const [title, setTitle] = useState (null)
 
   const onReturn = () => {
     setShowDetail(false);
@@ -31,7 +33,9 @@ export const RequestDetails = ({ setShowDetail, solicitudId }) => {
       setStatus(response.status);
       setRequestTypeName(response.requestTypeName);
       setStartDate(response.startDate);
+      setFinishDate(response.finishDate);
       setComment(response.comment);
+      setTitle (response.title)
     };
 
     prueba();
@@ -46,27 +50,37 @@ export const RequestDetails = ({ setShowDetail, solicitudId }) => {
       </Grid>
       <Grid item>
         <Typography variant="h4" fontSize={20}>
-          Estado:{status}
+          Estado: {status}
         </Typography>
       </Grid>
       <Grid item>
         <Typography variant="h4" fontSize={20}>
-          Tipo: {requestTypeName}
+          Tipo:  {requestTypeName}
         </Typography>
       </Grid>
       <Grid item>
         <Typography variant="h4" fontSize={20}>
-          Inicio:{startDate}
+          Inicio:   {startDate}
         </Typography>
       </Grid>
       <Grid item>
         <Typography variant="h4" fontSize={20}>
-          Comentario:{comment}
+          Final:   {finishDate}
+        </Typography>
+      </Grid>
+      <Grid item>
+        <Typography variant="h4" fontSize={20}>
+          Titulo:   {title}
+        </Typography>
+      </Grid>
+      <Grid item>
+        <Typography variant="h4" fontSize={20}>
+          Comentario: {comment}
         </Typography>
       </Grid>
       <Grid item xs={10}>
         <Typography variant="h4" fontSize={30}>
-          Detalles de la Validación
+          Observacion de la Validación
         </Typography>
         <Typography variant="h4" fontSize={15} m={2}>
           *No cumple con el tiempo minimo entre solicitudes de vacaciones
@@ -83,7 +97,7 @@ export const RequestDetails = ({ setShowDetail, solicitudId }) => {
       <Grid container justifyContent="center"  alignItems="flex-end">
         <ThemeProvider theme={theme}>
           <Button color="neutral" variant="contained" onClick={onReturn}>
-            Retomar
+            Retornar
           </Button>
         </ThemeProvider>
       </Grid>
