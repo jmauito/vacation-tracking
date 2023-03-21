@@ -66,8 +66,7 @@ export const VacationRequest = () => {
                         value={title}                     
                         label="Titulo"
                         multiline
-                        rows={4}
-                        sx={{ width: '500px'}}
+                        sx={{ width: '600px'}}
                     />
                 </Grid>           
                 <Grid item>
