@@ -63,7 +63,7 @@ export const VacationRequesApproval = ({ requestId }) => {
         </Typography>
       </Grid>
       <Grid item>
-        <Typography variant="h6">Nombre: {employeeName}</Typography>
+        <Typography variant="h6">Nombres y Apellidos: {employeeName}</Typography>
       </Grid>
       <Grid item>
         <Typography variant="h6" gutterBottom>
@@ -78,6 +78,11 @@ export const VacationRequesApproval = ({ requestId }) => {
       <Grid item>
         <Typography variant="h6" gutterBottom>
           Termina: {finishDate}
+        </Typography>
+      </Grid>
+      <Grid item>
+        <Typography variant="h6" gutterBottom>
+          Titulo:
         </Typography>
       </Grid>
       <Grid item>
