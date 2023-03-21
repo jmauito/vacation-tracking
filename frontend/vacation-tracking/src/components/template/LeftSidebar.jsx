@@ -13,10 +13,11 @@ export const LeftSidebar = () => {
 
   const {statusLogin, setShowRequest} = useContext(UserContext);
   const {role} = statusLogin;
-  
-  const redirectOptiosMenu = () => {
-    if(role.name === 'ROLE_USER'){
-      return (
+
+  return (
+    <List>
+     {(role.name === 'ROLE_USER' || role.name === 'ROLE_ADMIN')
+      && (
         <>
         <Link to="/solicitud-vacaciones" style={{all: 'unset'}}>
           <ListItem disablePadding>
@@ -34,9 +35,9 @@ export const LeftSidebar = () => {
           </ListItem>
         </Link>
       </>
-      )
-    }else if(role.name === 'ROLE_ADMIN'){
-      return (
+      )}
+    {(role.name === 'ROLE_ADMIN')
+      && (
         <>
            <Divider />
             <Link to="/revision-solicitudes-vacaciones" style={{all: 'unset'}}>
@@ -49,14 +50,6 @@ export const LeftSidebar = () => {
         </>
       )
     }
-  }
-
-
-  return (
-    <List>
-      {
-        redirectOptiosMenu()
-      }
       <Divider />
     </List>
   );
