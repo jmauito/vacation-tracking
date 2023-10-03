@@ -13,7 +13,7 @@ public class EmployeeService {
     @Autowired
     IEmployeeDAO employeeDAO;
 
-    public Optional<Employee> findById(Long id){
+    public Employee findById(Long id){
         return employeeDAO.findById(id);
     }
 

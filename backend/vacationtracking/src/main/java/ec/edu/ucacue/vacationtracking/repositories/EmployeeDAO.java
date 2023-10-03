@@ -1,6 +1,7 @@
 package ec.edu.ucacue.vacationtracking.repositories;
 
 import ec.edu.ucacue.vacationtracking.domain.Employee;
+import ec.edu.ucacue.vacationtracking.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -12,8 +13,8 @@ public class EmployeeDAO implements IEmployeeDAO{
     EmployeeRepository employeeRepository;
 
     @Override
-    public Optional<Employee> findById(Long id) {
-        return employeeRepository.findById(id);
+    public Employee findById(Long id) {
+        return employeeRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("employee.id: '" + id + "'"));
     }
 
     @Override
