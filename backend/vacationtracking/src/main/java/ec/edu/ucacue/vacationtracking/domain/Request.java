@@ -6,8 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.time.LocalDate;
 
-import java.util.Date;
 @Builder
 @Data
 @Entity
@@ -20,8 +20,8 @@ public class Request {
     private String title;
     private String comment;
     private int hours;
-    private Date startDate;
-    private Date finishDate;
+    private LocalDate startDate;
+    private LocalDate finishDate;
     @ManyToOne
     private RequestType requestType;
     @ManyToOne

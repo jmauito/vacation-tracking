@@ -13,12 +13,9 @@ import ec.edu.ucacue.vacationtracking.domain.enums.RequestStatus;
 import ec.edu.ucacue.vacationtracking.repositories.IRequestDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -64,7 +61,7 @@ public class RequestService {
             requestByEmployeeOutDTOList.add( RequestByEmployeeOutDTO.builder()
                             .id(request.getId())
                             .requestTypeName(request.getRequestType().getName())
-                            .startDate(request.getStartDate().toString())
+                            .startDate( request.getStartDate().toString() )
                             .finishDate(request.getFinishDate().toString())
                             .title(request.getTitle())
                             .status(request.getStatus())
@@ -118,9 +115,8 @@ public class RequestService {
         Employee employee = employeeService.findByUserId(user);
         RequestType requestType = requestTypeService.findById(insertRequestInDTO.getRequestTypeId());
 
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date startDate = dateFormat.parse(insertRequestInDTO.getStartDate());
-        Date finishDate = dateFormat.parse(insertRequestInDTO.getFinishDate());
+        LocalDate startDate = LocalDate.parse(insertRequestInDTO.getStartDate());
+        LocalDate finishDate = LocalDate.parse(insertRequestInDTO.getFinishDate());
 
         Request request = Request.builder()
                 .title(insertRequestInDTO.getTitle())
