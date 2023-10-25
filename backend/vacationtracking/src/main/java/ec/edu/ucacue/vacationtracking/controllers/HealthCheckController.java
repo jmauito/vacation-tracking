@@ -13,4 +13,9 @@ public class HealthCheckController {
         String message = "It works!";
         return ResponseEntity.ok(message);
     }
+    @GetMapping("/check/private")
+    public ResponseEntity<String> checkPrivate(){
+        String message = "It works!";
+        return ResponseEntity.ok(message);
+    }
 }

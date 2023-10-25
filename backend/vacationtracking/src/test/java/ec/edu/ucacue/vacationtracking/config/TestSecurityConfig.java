@@ -11,7 +11,12 @@ public class TestSecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.csrf().disable().authorizeHttpRequests().anyRequest().permitAll();
+        httpSecurity.csrf().disable()
+                .authorizeHttpRequests().requestMatchers("/health/check","/api/v1/auth/**").permitAll()
+                .and()
+                .authorizeHttpRequests().requestMatchers("/health/**").authenticated()
+                .and()
+                .authorizeHttpRequests().anyRequest().authenticated();
         return httpSecurity.build();
     }
 }

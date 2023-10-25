@@ -23,7 +23,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @WebMvcTest(RequestInboxController.class)
-@WithMockUser
 @ContextConfiguration(classes = {RequestInboxController.class, TestJwtAuthenticationFilter.class, TestSecurityConfig.class})
 public class RequestInboxControllerTest {
     @Autowired
@@ -32,6 +31,7 @@ public class RequestInboxControllerTest {
     private RequestService requestService;
 
     @Test
+    @WithMockUser
     public void shouldRetrieveAListOfRequestByEmployeePending() throws Exception {
 
         when(requestService.findPending()).thenReturn(List.of(
